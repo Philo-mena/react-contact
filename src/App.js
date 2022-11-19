@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Form from "./components/Form";
+import Contacts from "./components/Contacts";
 
 function App() {
+  const [users, setUsers] = useState([
+    { name: "Philo", phoneNumber: 3455643, location: "Adenta" },
+    { name: "Habib", phoneNumber: 2244445, location: "Codetrain" },
+    { name: "kingsley", phoneNumber: 5544445, location: "Adenta" },
+  ]);
+  // creating a function named handleAddContact
+  function handleAddContact(user) {
+    console.log("logging from app");
+    console.log(user);
+    setUsers((prev) => [...prev, user]);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <Form handleAddContact={handleAddContact} />
+      <Contacts users={users} />
     </div>
   );
 }
